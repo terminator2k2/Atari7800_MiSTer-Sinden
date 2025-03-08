@@ -45,6 +45,7 @@ module emu
 	input  [11:0] HDMI_WIDTH,
 	input  [11:0] HDMI_HEIGHT,
 	output        HDMI_FREEZE,
+	output        gun_border_en,
 
 `ifdef MISTER_FB
 	// Use framebuffer in DDRAM
@@ -168,6 +169,7 @@ assign {UART_RTS, UART_TXD, UART_DTR} = 0;
 
 assign AUDIO_S   = 0;
 assign AUDIO_MIX = status[3:2];
+assign gun_border_en = status[53];
 
 assign LED_USER  = cart_download | bk_state | bk_pending;
 assign LED_DISK  = 0;
@@ -249,6 +251,7 @@ parameter CONF_STR = {
 	"P1O9B,Scandoubler Fx,None,HQ2x,CRT 25%,CRT 50%,CRT 75%;",
 	"P1OT,Show Overscan,No,Yes;",
 	"P1OE,Show Border,Yes,No;",
+	"P1oL,Sinden Boarder,Off,On;",
 	"P1OK,Composite Blending,No,Yes;",
 	"P1OUV,Temperature Colors,Warm,Cool,Hot,Custom;",
 	"H3P1FC3,PAL,Load Palette;",
